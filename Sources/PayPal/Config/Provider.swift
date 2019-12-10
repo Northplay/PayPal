@@ -12,6 +12,7 @@ public final class PayPalProvider: Vapor.Provider {
     let version: Version
     let clientID: String
     let clientSecret: String
+	let environment: PayPal.Environment?
     
     /// Creates a new `PayPal.Provider` instance to register with an
     /// application's `Services`.
@@ -22,15 +23,16 @@ public final class PayPalProvider: Vapor.Provider {
     ///   - version: The version of the PayPal API to use when making requests.
     ///   - id: The client ID for the PayPal app the connect to.
     ///   - secret: The client secret for the PayPal app to connect to.
-    public init(version: Version = .v1, id: String, secret: String) {
+    public init(version: Version = .v1, id: String, secret: String, environment: PayPal.Environment? = nil) {
         self.version = version
         self.clientID = id
         self.clientSecret = secret
+		self.environment = environment
     }
     
     /// Registers all services to the app's services.
     public func register(_ services: inout Services) throws {
-        services.register(Configuration(id: self.clientID, secret: self.clientSecret, version: self.version))
+        services.register(Configuration(id: self.clientID, secret: self.clientSecret, version: self.version, environment: environment))
         
         services.register(AuthInfo())
         services.register(PayPalClient.self)
@@ -56,7 +58,9 @@ public final class PayPalProvider: Vapor.Provider {
     /// Gets the current app environment and registers the proper PayPal environment to the configuration.
     public func didBoot(_ container: Container) throws -> EventLoopFuture<Void> {
         let config = try container.make(Configuration.self)
-        config.environment = container.environment.isRelease ? .production : .sandbox
+		if config.environment == nil {
+			config.environment = container.environment.isRelease ? .production : .sandbox
+		}
         
         return container.future()
     }
@@ -81,10 +85,10 @@ public final class Configuration: Service {
     /// be `.production`, otherwise it will be `.sandbox`.
     public internal(set) var environment: PayPal.Environment!
     
-    init(id: String, secret: String, version: Version) {
+	init(id: String, secret: String, version: Version, environment: PayPal.Environment? = nil) {
         self.id = id
         self.secret = secret
-        self.environment = nil
+        self.environment = environment
         self.version = version
     }
 }
