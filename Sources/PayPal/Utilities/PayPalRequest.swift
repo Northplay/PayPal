@@ -51,17 +51,13 @@ extension Container {
             }
         }.flatMap(to: Response.self) {
             let request = try self.paypal(method, path, parameters: parameters, headers: headers, auth: true, body: body)
-            
-            #if DEBUG
+
             if Env.get("PAYPAL_LOG_API_ERROR") == "TRUE" { req = request }
-            #endif
             
             return try self.client().send(request)
         }.flatMap(to: Result.self) { response in
             if !(200...299).contains(response.http.status.code) {
-                #if DEBUG
                 if Env.get("PAYPAL_LOG_API_ERROR") == "TRUE" { print(req!, "\n\n", response) }
-                #endif
                 
                 guard response.http.headers.firstValue(name: .contentType) == "application/json" else {
                     let body = response.http.body.data ?? Data()
