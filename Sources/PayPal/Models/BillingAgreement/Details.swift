@@ -5,7 +5,7 @@ import Vapor
 public struct Details: Content, Equatable {
     
     /// The currency and amount of the outstanding balance for this agreement.
-    public var outstanding: CurrencyCodeAmount?
+//    public var outstanding: CurrencyCodeAmount?
     
     /// The number of payment cycles remaining for this agreement.
     public var cyclesRemaining: String?
@@ -42,7 +42,7 @@ public struct Details: Content, Equatable {
     ///         failedPaymentCount: "5"
     ///     )
     public init(
-        outstanding: CurrencyCodeAmount?,
+//        outstanding: CurrencyCodeAmount?,
         cyclesRemaining: String?,
         cyclesComplete: String?,
         nextBilling: String?,
@@ -51,7 +51,7 @@ public struct Details: Content, Equatable {
         finalPaymentDate: String?,
         failedPaymentCount: String?
     ) {
-        self.outstanding = outstanding
+//        self.outstanding = outstanding
         self.cyclesRemaining = cyclesRemaining
         self.cyclesComplete = cyclesComplete
         self.nextBilling = nextBilling
@@ -62,7 +62,7 @@ public struct Details: Content, Equatable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case outstanding = "outstanding_balance"
+//        case outstanding = "outstanding_balance"
         case cyclesRemaining = "cycles_remaining"
         case cyclesComplete = "cycles_completed"
         case nextBilling = "next_billing_date"

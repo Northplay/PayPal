@@ -27,7 +27,7 @@ public final class BillingAgreements: PayPalController {
     /// See `PayPalController.init(container:)`.
     public init(container: Container) {
         self.container = container
-        self.resource = "payments//billing-agreements"
+        self.resource = "payments/billing-agreements"
         self.version = try container.make(Configuration.self).version || .v1
     }
     

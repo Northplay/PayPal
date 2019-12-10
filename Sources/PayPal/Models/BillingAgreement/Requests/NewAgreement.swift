@@ -39,7 +39,7 @@ public struct NewAgreement: Content, Equatable {
     /// the agreement uses the default merchant preferences from the plan. The merchant preferences include how much it costs to set up the agreement,
     /// the URLs where the customer can approve or cancel the agreement, the maximum number of allowed failed payment attempts, whether PayPal
     /// automatically bills the outstanding balance in the next billing cycle, and the action if the customer's initial payment fails.
-    public var overrideMerchantPreferances: MerchantPreferances<CurrencyCodeAmount>?
+    public var overrideMerchantPreferances: MerchantPreferances<CurrencyAmount>?
     
     /// An array of charge models to override the charge models in the plan. A charge model defines shipping fee and tax information.
     /// If you omit this parameter, the agreement uses the default shipping fee and tax information from the plan.
@@ -68,7 +68,7 @@ public struct NewAgreement: Content, Equatable {
         plan: ID,
         details: Details? = nil,
         shippingAddress: Address? = nil,
-        overrideMerchantPreferances: MerchantPreferances<CurrencyCodeAmount>? = nil,
+        overrideMerchantPreferances: MerchantPreferances<CurrencyAmount>? = nil,
         overrideChargeModels: [OverrideCharge]? = nil
     ) {
         self.name = name

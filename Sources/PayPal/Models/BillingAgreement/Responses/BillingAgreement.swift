@@ -55,7 +55,7 @@ public struct BillingAgreement: Content, Equatable {
     public var overrideChargeModels: [OverrideCharge]?
     
     /// The plan that can be used to create an agreement.
-    public var plan: BillingPlan?
+//    public var plan: BillingPlan?
     
     /// Creates a new `BillingAgreement` instance.
     ///
@@ -77,8 +77,8 @@ public struct BillingAgreement: Content, Equatable {
         payer: Payer?,
         shippingAddress: Address?,
         overrideMerchantPreferances: MerchantPreferances<CurrencyCodeAmount>?,
-        overrideChargeModels: [OverrideCharge]?,
-        plan: BillingPlan?
+        overrideChargeModels: [OverrideCharge]?
+//        plan: BillingPlan?
     ) {
         self.id = nil
         self.state = nil
@@ -92,11 +92,11 @@ public struct BillingAgreement: Content, Equatable {
         self.shippingAddress = shippingAddress
         self.overrideMerchantPreferances = overrideMerchantPreferances
         self.overrideChargeModels = overrideChargeModels
-        self.plan = plan
+//        self.plan = plan
     }
     
     enum CodingKeys: String, CodingKey {
-        case id, state, links, name, description, payer, plan
+        case id, state, links, name, description, payer
         case start = "start_date"
         case details = "agreement_details"
         case shippingAddress = "shipping_address"
