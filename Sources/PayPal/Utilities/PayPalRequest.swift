@@ -39,9 +39,7 @@ extension Container {
         body: Body?,
         as response: Result.Type = Result.self
     ) -> Future<Result> where Body: Content, Result: Content {
-        #if DEBUG
         var req: Request?
-        #endif
         
         return Future.flatMap(on: self) { () -> Future<Void> in
             if try self.make(AuthInfo.self).tokenExpired == true {
