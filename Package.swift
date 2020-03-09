@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "PayPal", targets: ["PayPal"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/skelpo/Countries.git", from: "0.9.1"),
+		.package(url: "https://github.com/Northplay/Countries.git", .branch("master")),
         .package(url: "https://github.com/skelpo/Failable.git", from: "0.2.0"),
         .package(url: "https://github.com/vapor/vapor.git", from: "3.1.0"),
         .package(url: "https://github.com/skelpo/JSON.git", from: "0.13.1"),
