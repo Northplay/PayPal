@@ -33,7 +33,7 @@ public struct Address: Content, Equatable {
     /// [Thailand](https://developer.paypal.com/docs/integration/direct/rest/state-codes/#thailand),
     /// or [United States](https://developer.paypal.com/docs/integration/direct/rest/state-codes/#usa).
     /// Maximum length is 40 single-byte characters.
-    public var state: Province?
+//    public var state: Province?
     
     /// The [two-character ISO 3166-1 code](https://developer.paypal.com/docs/integration/direct/rest/country-codes/)
     /// that identifies the country or region.
@@ -76,7 +76,7 @@ public struct Address: Content, Equatable {
         line1: String,
         line2: String?,
         city: String,
-        state: Province?,
+//        state: Province?,
         country: Country,
         postalCode: String,
         phone: String?,
@@ -88,7 +88,7 @@ public struct Address: Content, Equatable {
         self.line1 = line1
         self.line2 = line2
         self.city = city
-        self.state = state
+//        self.state = state
         self.country = country
         self.postalCode = postalCode
         self.phone = phone
@@ -96,7 +96,7 @@ public struct Address: Content, Equatable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case line1, line2, city, state, phone, type
+        case line1, line2, city, phone, type
         case recipientName = "recipient_name"
         case defaultAddress = "default_address"
         case country = "country_code"
